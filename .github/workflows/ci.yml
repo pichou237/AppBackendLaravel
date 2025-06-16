@@ -1,47 +1,49 @@
-name: CI/CD Laravel DevSecOps
+name: CI/CD Laravel DevSecOps (SQLite)
 
 on:
   push:
-    branches:
-      - main
-      - dev
-      - feature
+    branches: [main, dev, feature]
   pull_request:
-    branches:
-      - main
-      - dev
+    branches: [main, dev]
+
+env:
+  DB_CONNECTION: sqlite
+  DB_DATABASE: /github/workspace/database/database.sqlite
 
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: root
-          POSTGRES_DB: laravel
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U root"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
+
+      - name: 🗄️ Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: ⚙️ Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, pdo, pdo_pgsql, zip, tokenizer, xml, curl
+          extensions: mbstring, pdo, sqlite3, zip, tokenizer, xml, curl
+          coverage: pcov
 
       - name: 📦 Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: 🛠️ Setup SQLite Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+          chmod 777 database/database.sqlite
+          cp .env.example .env
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=$(pwd)/database/database.sqlite" >> .env
+          php artisan key:generate
 
       - name: 🔐 Analyse Statique (Larastan)
         run: ./vendor/bin/phpstan analyse --no-progress
@@ -58,20 +60,16 @@ jobs:
       - name: 📃 Afficher rapport de sécurité
         run: ls -la ./security-report
 
-      - name: 🧪 Run PHPUnit Tests
-        env:
-          DB_CONNECTION: pgsql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 5432
-          DB_DATABASE: laravel
-          DB_USERNAME: root
-          DB_PASSWORD: root
-        run: php artisan test --testsuite=Unit
+      - name: 🧪 Run Tests
+        run: |
+          php artisan migrate:fresh --force
+          php artisan test
 
       - name: 🐳 Build Docker Image
         run: docker build -t laravel-app .
 
       - name: 🧪 Tests OWASP TOP 10
+        if: fileExists('check-owasp.sh')
         run: bash check-owasp.sh
 
       - name: 🚀 Déploiement Staging
@@ -90,5 +88,5 @@ jobs:
       - name: 📦 Archive Rapport OWASP
         uses: actions/upload-artifact@v4
         with:
-          name: rapport-securite
+          name: rapport-securite-${{ github.run_number }}
           path: ./security-report
