@@ -1,0 +1,81 @@
+
+name: CI/CD Laravel DevSecOps
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql, zip, tokenizer, xml, curl
+
+      - name: 📦 Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: 🔐 Analyse Statique (Larastan)
+        run: ./vendor/bin/phpstan analyse --no-progress
+
+      - name: 📊 OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'Laravel Project'
+          scanpath: '.'
+          format: 'HTML'
+          out: './security-report'
+          failOnCVSS: 7
+
+      - name: 📃 Afficher rapport de sécurité
+        run: ls -la ./security-report
+
+      - name: 🧪 Run PHPUnit Tests
+        run: php artisan test --testsuite=Unit
+
+      - name: 🐳 Build Docker Image
+        run: docker build -t laravel-app .
+
+      - name: 🧪 Tests OWASP TOP 10
+        run: bash check-owasp.sh
+
+      - name: 🚀 Déploiement Staging
+        if: github.ref == 'refs/heads/main'
+        run: echo "Déploiement staging via Render/Heroku ou Docker"
+
+      - name: 📝 Validation Manuelle
+        run: |
+          echo "Checklist manuelle :"
+          echo "- Injection SQL testée ?"
+          echo "- XSS testée ?"
+          echo "- Sécurité HTTPS vérifiée ?"
+          echo "- Authentification robuste OK ?"
+          echo "- Logs & monitoring actifs ?"
+
+      - name: 📦 Archive Rapport OWASP
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-securite
+          path: ./security-report

@@ -1,0 +1,1291 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Gestion de stages",
+        "description": "Documentation de l'API StageAPP",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/candidatures": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Lister tous les candidatures",
+                "operationId": "4433f2edc959ef215a18a81309e913df",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Insertion d'un nouveau candidat ",
+                "operationId": "62704344c7a43c99304e8d0a1c5e956e",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'un nouveau candidat dans la table candidatures",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Candidature"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/candidatures/{id}": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "recuperation d'un candidat ",
+                "operationId": "61f1ed13c7fe05fd9113cf6978789928",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un candidat precis en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Candidature"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Suppression d'un candidat ",
+                "operationId": "2eed460642eada7d704c958dabac6ddd",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un etudiant dans la table candidat",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Candidature"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etudiants/{id}": {
+            "put": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Mise a jour d'un candidat ",
+                "operationId": "ee964af392ccc7010f9f706d872e139a",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un candidat dans la table candidatures",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Candidature"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entreprises": {
+            "get": {
+                "tags": [
+                    "Entreprises"
+                ],
+                "summary": "Lister tous les entreprises",
+                "operationId": "d90bf59fd696ccf94d2c514f2f8d287a",
+                "responses": {
+                    "200": {
+                        "description": "Liste des entreprises",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entreprise"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/entreprise/{id}": {
+            "get": {
+                "tags": [
+                    "Entreprises"
+                ],
+                "summary": "recuperation d'une etreprise ",
+                "operationId": "6ae488047b9832c4f4da9dd74f644808",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'une entreprise precis en fonction de son matricule",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entreprise"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Entreprise": {
+            "post": {
+                "tags": [
+                    "Entreprises"
+                ],
+                "summary": "Insertion d'un nouveau Secteur ",
+                "operationId": "187095fc31dc9a5644a5f9248124cdeb",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une nouvelle Entreprise dans la table Entreprises",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entreprise"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Entreprise/{id}": {
+            "put": {
+                "tags": [
+                    "Entreprises"
+                ],
+                "summary": "Mise a jour d'une Entreprise ",
+                "operationId": "d25816841bee3ea5caba6d7948993898",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'une Entreprise dans la table Entreprises",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entreprise"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "Suppression d'une Entreprise ",
+                "operationId": "c0bb02fde07d137d4bf9109f5d8bd867",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'une Entreprise dans la table Entreprises",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entreprise"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etablissements": {
+            "get": {
+                "tags": [
+                    "Etablissements"
+                ],
+                "summary": "Lister tous les etablissements",
+                "operationId": "6a50f2d5850ddb02e3e2af8b558714b0",
+                "responses": {
+                    "200": {
+                        "description": "Liste des etablissements",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etablissement"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Etablissements"
+                ],
+                "summary": "Insertion d'un nouveau etablissement ",
+                "operationId": "69fb9fc105b9147ae77fa45587e0b040",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'un nouveau etablissement dans la table Etablissements",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etablissement"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etablissements/{id}": {
+            "get": {
+                "tags": [
+                    "Etablissements"
+                ],
+                "summary": "recuperation d'un etablissement ",
+                "operationId": "71a2b5e73e28def5f113d2c288aa87d7",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un etablissement precis en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etablissement"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Etablissements"
+                ],
+                "summary": "Mise a jour d'un etablissement ",
+                "operationId": "8bea540042bac1fb37f1b86278d32141",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un etablissement dans la table Etablissements",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etablissement"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Etablissements"
+                ],
+                "summary": "Suppression d'un etablissement ",
+                "operationId": "2de26ab5332394e590a674403d863e96",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un etablissement dans la table Etablissements",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etablissement"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etudiants": {
+            "get": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Lister tous les étudiants",
+                "operationId": "43b9e37fe62cf972c5b5108fbcc0c963",
+                "responses": {
+                    "200": {
+                        "description": "Liste des étudiants",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Insertion d'un nouveau etudiant ",
+                "operationId": "a3dd75f4bc1d2b447606479761bc2db2",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'un nouveau etudiant dans la table etudiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etudiants/{matricule}": {
+            "get": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "recuperation d'un étudiant ",
+                "operationId": "b42efc5050a3d88f5d05876c25f432be",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un etudiant precis en fonction de son matricule",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Mise a jour d'un etudiant ",
+                "operationId": "d1dec393cb3697ded27a17f8e0e40885",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un etudiant dans la table etudiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Étudiants"
+                ],
+                "summary": "Suppression d'un etudiant ",
+                "operationId": "928b2f90011df97e33aa4c14445715fe",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un etudiant dans la table etudiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/filieres": {
+            "get": {
+                "tags": [
+                    "Filieres"
+                ],
+                "summary": "Lister tous les filieres",
+                "operationId": "d51062da680ce3284c1d4e73c1926cf5",
+                "responses": {
+                    "200": {
+                        "description": "Liste des filieres",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Filiere"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Filieres"
+                ],
+                "summary": "Insertion d'un nouvelle filiere ",
+                "operationId": "89e16ada61faec46214a0193b0ee4b3c",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une nouvelle filiere dans la table Filieres",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Filiere"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/filieres/{id}": {
+            "get": {
+                "tags": [
+                    "Filieres"
+                ],
+                "summary": "recuperation d'un filiere ",
+                "operationId": "b42ee126533af9e6a4ad886339bb128a",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'une filiere precise en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Filiere"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Filieres"
+                ],
+                "summary": "Mise a jour d'une filiere ",
+                "operationId": "d22d19cdf680a2aa0178758e34791aa5",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'une filiere dans la table Filieres",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Filiere"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Filieres"
+                ],
+                "summary": "Suppression d'une filiere ",
+                "operationId": "d5e0f12b2767bd67c48d01183acbb4df",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'une Filiere dans la table Filieres",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Filiere"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Niveaus": {
+            "get": {
+                "tags": [
+                    "Niveaus"
+                ],
+                "summary": "Lister tous les Niveaux",
+                "operationId": "ad86b952b3b6c95e21079be1d25db133",
+                "responses": {
+                    "200": {
+                        "description": "Liste des Niveaus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/niveau/{id}": {
+            "get": {
+                "tags": [
+                    "Niveaus"
+                ],
+                "summary": "recuperation d'un niveau ",
+                "operationId": "90357e51be2b275993083763ad8e0053",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un niveau precise en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Niveaus"
+                ],
+                "summary": "Mise a jour d'un niveau ",
+                "operationId": "3db0c1a52912ea69457dc3a260db2f0f",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un niveau dans la table niveau",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/niveau": {
+            "post": {
+                "tags": [
+                    "Niveaus"
+                ],
+                "summary": "Insertion d'un nouveau Niveau ",
+                "operationId": "51319f9226003f73149e7a8fa4324d92",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une nouveau niveau dans la table niveauses",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/niveaus/{id}": {
+            "delete": {
+                "tags": [
+                    "Niveaus"
+                ],
+                "summary": "Suppression d'un niveau ",
+                "operationId": "4c8cf8250e4193ebcf4563c5c59b056e",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un niveau dans la table Niveauses",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offreStages": {
+            "get": {
+                "tags": [
+                    "OffreStages"
+                ],
+                "summary": "Lister tous les offre de Stages",
+                "operationId": "1df55e8e79a2e93a711f3aa1def0571e",
+                "responses": {
+                    "200": {
+                        "description": "Liste des offre de Stages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "OffreStages"
+                ],
+                "summary": "Insertion d'une nouvel offre Stages ",
+                "operationId": "cd8094ca0ba66d9dfd4b60a8e741d74b",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une offre de Stages niveau dans la table offreStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/offreStages/{id}": {
+            "get": {
+                "tags": [
+                    "OffreStages"
+                ],
+                "summary": "recuperation d'une offre de Stages ",
+                "operationId": "252bf54eeaadc9b1592656a6c34bf17a",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'une offre de Stages precise en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "OffreStages"
+                ],
+                "summary": "Mise a jour d'un offre de Stages ",
+                "operationId": "d444cd5c128a2308f106691ccb98202b",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un offre de Stages dans la table offreStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "OffreStages"
+                ],
+                "summary": "Suppression d'un offre ",
+                "operationId": "8e55f45617de0dc4abc0b12637e90daa",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un offre de Stages dans la table offreStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OffreStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Secteurs": {
+            "get": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "Lister tous les Secteurs",
+                "operationId": "e9d8395d82f30ccfb72294596c9edf86",
+                "responses": {
+                    "200": {
+                        "description": "Liste des Secteurs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Niveau"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/secteurs/{id}": {
+            "get": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "recuperation d'un Secteur ",
+                "operationId": "3ba5e7076443622595775fde2b5701a5",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un Secteurs precise en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Secteur"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/secteur": {
+            "post": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "Insertion d'un nouveau Secteur ",
+                "operationId": "7a8d5b3dd796abb5bac8b1a1b143532e",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une nouveau secteur dans la table Secteurs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Secteur"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/secteur/{id}": {
+            "put": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "Mise a jour d'un Secteur ",
+                "operationId": "5406a8841f8ce9a309583e3519054616",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un Secteur dans la table Secteurs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Secteur"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Secteurs"
+                ],
+                "summary": "Suppression d'un Secteur ",
+                "operationId": "6c77e4c99c03d20376478660ba3691c4",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un secteur dans la table Secteurs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Secteur"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/typeStages": {
+            "get": {
+                "tags": [
+                    "TypeStages"
+                ],
+                "summary": "Lister tous les Type de Stages",
+                "operationId": "e55912a4e6b18105491d634d31611e3c",
+                "responses": {
+                    "200": {
+                        "description": "Liste des Type de Stages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/TypeStage/{id}": {
+            "get": {
+                "tags": [
+                    "TypeStages"
+                ],
+                "summary": "recuperation d'un Type de Stages ",
+                "operationId": "a391708b1bfb08a96aad500f4b9e35c8",
+                "responses": {
+                    "200": {
+                        "description": "Recuperation d'un Type de Stages precise en fonction de son identifiant",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TypeStages"
+                ],
+                "summary": "Mise a jour d'un Type de Stages ",
+                "operationId": "6ca8d13befb72174d13d178d0332f28b",
+                "responses": {
+                    "200": {
+                        "description": "Mise a jour d'un Type de Stages dans la table TypeStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TypeStages"
+                ],
+                "summary": "Suppression d'un Type de Stages ",
+                "operationId": "8b08effbcfaa6f8c1b30efc81ebf96c0",
+                "responses": {
+                    "200": {
+                        "description": "Suppression d'un Type de Stages dans la table TypeStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/TypeStage": {
+            "post": {
+                "tags": [
+                    "TypeStages"
+                ],
+                "summary": "Insertion d'un nouveau Type de Stages ",
+                "operationId": "7f7eb4b53e1f802040c92bac054bf35b",
+                "responses": {
+                    "200": {
+                        "description": "Insertion d'une nouveau Type de Stages dans la table TypeStages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TypeStage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Candidature": {
+                "title": "Candidature",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "matricule": {
+                        "type": "string"
+                    },
+                    "date_offre": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Entreprise": {
+                "title": "Entreprise",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "adresse": {
+                        "type": "string"
+                    },
+                    "politique": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "ville": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Etablissement": {
+                "title": "Etablissement",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type_etab": {
+                        "type": "string"
+                    },
+                    "ville": {
+                        "type": "text"
+                    },
+                    "contact": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Etudiant": {
+                "title": "Etudiant",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nom": {
+                        "type": "string",
+                        "example": "Jean"
+                    },
+                    "prenom": {
+                        "type": "string",
+                        "example": "Dupont"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "jean.dupont@example.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Filiere": {
+                "title": "Filiere",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "id_etab": {
+                        "type": "integer"
+                    },
+                    "id_niveau": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Niveau": {
+                "title": "Niveau",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "label": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OffreStage": {
+                "title": "OffreStage",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "text"
+                    },
+                    "date_debut": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "date_fin": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "renumeration": {
+                        "type": "integer"
+                    },
+                    "places": {
+                        "type": "integer"
+                    },
+                    "condition_admin": {
+                        "type": "text"
+                    },
+                    "competences": {
+                        "type": "text"
+                    },
+                    "id_ent": {
+                        "type": "integer"
+                    },
+                    "id_typestage": {
+                        "type": "integer"
+                    },
+                    "id_sect": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Secteur": {
+                "title": "Secteur",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TypeStage": {
+                "title": "TypeStage",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "durre": {
+                        "type": "dateTime"
+                    },
+                    "description": {
+                        "type": "text"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Candidatures",
+            "description": "Candidatures"
+        },
+        {
+            "name": "Entreprises",
+            "description": "Entreprises"
+        },
+        {
+            "name": "Secteurs",
+            "description": "Secteurs"
+        },
+        {
+            "name": "Etablissements",
+            "description": "Etablissements"
+        },
+        {
+            "name": "Étudiants",
+            "description": "Étudiants"
+        },
+        {
+            "name": "Filieres",
+            "description": "Filieres"
+        },
+        {
+            "name": "Niveaus",
+            "description": "Niveaus"
+        },
+        {
+            "name": "OffreStages",
+            "description": "OffreStages"
+        },
+        {
+            "name": "TypeStages",
+            "description": "TypeStages"
+        }
+    ]
+}

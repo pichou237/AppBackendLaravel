@@ -1,0 +1,4 @@
+Taches: Gestion des formulaires
+1. process de creation d'un formulaire 
+2. comment faire le crud avec controller
+3. interface GUI
