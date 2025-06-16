@@ -5,24 +5,16 @@ on:
   push:
     branches:
       - main
-      - develop
+      - dev
+      - feature
   pull_request:
     branches:
       - main
+      - dev
 
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: 📥 Checkout code
@@ -32,7 +24,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, pdo, pdo_mysql, zip, tokenizer, xml, curl
+          extensions: mbstring, pdo, pdo_sqlite, zip, tokenizer, xml, curl
 
       - name: 📦 Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
@@ -52,8 +44,15 @@ jobs:
       - name: 📃 Afficher rapport de sécurité
         run: ls -la ./security-report
 
+      - name: 📄 Créer fichier SQLite
+        run: |
+          touch database/database.sqlite
+
       - name: 🧪 Run PHPUnit Tests
-        run: php artisan test --testsuite=Unit
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: php artisan migrate --force && php artisan test --testsuite=Unit
 
       - name: 🐳 Build Docker Image
         run: docker build -t laravel-app .
