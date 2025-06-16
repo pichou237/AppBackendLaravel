@@ -1,4 +1,3 @@
-
 name: CI/CD Laravel DevSecOps
 
 on:
@@ -17,14 +16,19 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:8.0
+      postgres:
+        image: postgres:15
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: laravel
         ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U root"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
 
     steps:
       - name: 📥 Checkout code
@@ -34,7 +38,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: mbstring, pdo, pdo_mysql, zip, tokenizer, xml, curl
+          extensions: mbstring, pdo, pdo_pgsql, zip, tokenizer, xml, curl
 
       - name: 📦 Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
@@ -55,6 +59,13 @@ jobs:
         run: ls -la ./security-report
 
       - name: 🧪 Run PHPUnit Tests
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: laravel
+          DB_USERNAME: root
+          DB_PASSWORD: root
         run: php artisan test --testsuite=Unit
 
       - name: 🐳 Build Docker Image
